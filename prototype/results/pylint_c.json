@@ -1,0 +1,121 @@
+{
+    "messages": [
+        {
+            "type": "convention",
+            "symbol": "missing-module-docstring",
+            "message": "Missing module docstring",
+            "messageId": "C0114",
+            "confidence": "HIGH",
+            "module": "helpers",
+            "obj": "",
+            "line": 1,
+            "column": 0,
+            "endLine": null,
+            "endColumn": null,
+            "path": "helpers.py",
+            "absolutePath": "C:\\projects\\Honours-Project\\prototype\\scenarios\\c_broken_dependency\\helpers.py"
+        },
+        {
+            "type": "convention",
+            "symbol": "missing-function-docstring",
+            "message": "Missing function or method docstring",
+            "messageId": "C0116",
+            "confidence": "HIGH",
+            "module": "helpers",
+            "obj": "slugify",
+            "line": 1,
+            "column": 0,
+            "endLine": 1,
+            "endColumn": 11,
+            "path": "helpers.py",
+            "absolutePath": "C:\\projects\\Honours-Project\\prototype\\scenarios\\c_broken_dependency\\helpers.py"
+        },
+        {
+            "type": "convention",
+            "symbol": "missing-function-docstring",
+            "message": "Missing function or method docstring",
+            "messageId": "C0116",
+            "confidence": "HIGH",
+            "module": "helpers",
+            "obj": "word_count",
+            "line": 5,
+            "column": 0,
+            "endLine": 5,
+            "endColumn": 14,
+            "path": "helpers.py",
+            "absolutePath": "C:\\projects\\Honours-Project\\prototype\\scenarios\\c_broken_dependency\\helpers.py"
+        },
+        {
+            "type": "convention",
+            "symbol": "missing-module-docstring",
+            "message": "Missing module docstring",
+            "messageId": "C0114",
+            "confidence": "HIGH",
+            "module": "main",
+            "obj": "",
+            "line": 1,
+            "column": 0,
+            "endLine": null,
+            "endColumn": null,
+            "path": "main.py",
+            "absolutePath": "C:\\projects\\Honours-Project\\prototype\\scenarios\\c_broken_dependency\\main.py"
+        },
+        {
+            "type": "convention",
+            "symbol": "missing-function-docstring",
+            "message": "Missing function or method docstring",
+            "messageId": "C0116",
+            "confidence": "HIGH",
+            "module": "main",
+            "obj": "summarise",
+            "line": 4,
+            "column": 0,
+            "endLine": 4,
+            "endColumn": 13,
+            "path": "main.py",
+            "absolutePath": "C:\\projects\\Honours-Project\\prototype\\scenarios\\c_broken_dependency\\main.py"
+        },
+        {
+            "type": "error",
+            "symbol": "no-member",
+            "message": "Module 'helpers' has no 'make_slug' member",
+            "messageId": "E1101",
+            "confidence": "INFERENCE",
+            "module": "main",
+            "obj": "summarise",
+            "line": 6,
+            "column": 11,
+            "endLine": 6,
+            "endColumn": 28,
+            "path": "main.py",
+            "absolutePath": "C:\\projects\\Honours-Project\\prototype\\scenarios\\c_broken_dependency\\main.py"
+        },
+        {
+            "type": "convention",
+            "symbol": "missing-function-docstring",
+            "message": "Missing function or method docstring",
+            "messageId": "C0116",
+            "confidence": "HIGH",
+            "module": "main",
+            "obj": "main",
+            "line": 10,
+            "column": 0,
+            "endLine": 10,
+            "endColumn": 8,
+            "path": "main.py",
+            "absolutePath": "C:\\projects\\Honours-Project\\prototype\\scenarios\\c_broken_dependency\\main.py"
+        }
+    ],
+    "statistics": {
+        "messageTypeCount": {
+            "fatal": 0,
+            "error": 1,
+            "warning": 0,
+            "refactor": 0,
+            "convention": 6,
+            "info": 0
+        },
+        "modulesLinted": 4,
+        "score": 1.5384615384615383
+    }
+}

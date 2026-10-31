@@ -1,0 +1,13 @@
+************* Module helpers
+helpers.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+helpers.py:1:0: C0116: Missing function or method docstring (missing-function-docstring)
+helpers.py:5:0: C0116: Missing function or method docstring (missing-function-docstring)
+************* Module main
+main.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+main.py:4:0: C0116: Missing function or method docstring (missing-function-docstring)
+main.py:6:11: E1101: Module 'helpers' has no 'make_slug' member (no-member)
+main.py:10:0: C0116: Missing function or method docstring (missing-function-docstring)
+
+------------------------------------------------------------------
+Your code has been rated at 1.54/10 (previous run: 5.56/10, -4.02)
+

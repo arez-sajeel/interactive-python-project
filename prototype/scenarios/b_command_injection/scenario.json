@@ -1,0 +1,10 @@
+{
+  "title": "Report generator",
+  "entry": "main.py",
+  "argv": ["report && echo INJECTED"],
+  "defect": {"file": "reports.py", "line": 10},
+  "expected_calls": [
+    ["main.main", "reports.generate_report"]
+  ],
+  "origin": "stand-in"
+}

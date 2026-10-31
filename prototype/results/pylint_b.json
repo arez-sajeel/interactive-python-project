@@ -1,0 +1,91 @@
+{
+    "messages": [
+        {
+            "type": "convention",
+            "symbol": "missing-module-docstring",
+            "message": "Missing module docstring",
+            "messageId": "C0114",
+            "confidence": "HIGH",
+            "module": "main",
+            "obj": "",
+            "line": 1,
+            "column": 0,
+            "endLine": null,
+            "endColumn": null,
+            "path": "main.py",
+            "absolutePath": "C:\\projects\\Honours-Project\\prototype\\scenarios\\b_command_injection\\main.py"
+        },
+        {
+            "type": "convention",
+            "symbol": "missing-function-docstring",
+            "message": "Missing function or method docstring",
+            "messageId": "C0116",
+            "confidence": "HIGH",
+            "module": "main",
+            "obj": "main",
+            "line": 6,
+            "column": 0,
+            "endLine": 6,
+            "endColumn": 8,
+            "path": "main.py",
+            "absolutePath": "C:\\projects\\Honours-Project\\prototype\\scenarios\\b_command_injection\\main.py"
+        },
+        {
+            "type": "convention",
+            "symbol": "missing-module-docstring",
+            "message": "Missing module docstring",
+            "messageId": "C0114",
+            "confidence": "HIGH",
+            "module": "reports",
+            "obj": "",
+            "line": 1,
+            "column": 0,
+            "endLine": null,
+            "endColumn": null,
+            "path": "reports.py",
+            "absolutePath": "C:\\projects\\Honours-Project\\prototype\\scenarios\\b_command_injection\\reports.py"
+        },
+        {
+            "type": "convention",
+            "symbol": "missing-function-docstring",
+            "message": "Missing function or method docstring",
+            "messageId": "C0116",
+            "confidence": "HIGH",
+            "module": "reports",
+            "obj": "build_command",
+            "line": 4,
+            "column": 0,
+            "endLine": 4,
+            "endColumn": 17,
+            "path": "reports.py",
+            "absolutePath": "C:\\projects\\Honours-Project\\prototype\\scenarios\\b_command_injection\\reports.py"
+        },
+        {
+            "type": "convention",
+            "symbol": "missing-function-docstring",
+            "message": "Missing function or method docstring",
+            "messageId": "C0116",
+            "confidence": "HIGH",
+            "module": "reports",
+            "obj": "generate_report",
+            "line": 8,
+            "column": 0,
+            "endLine": 8,
+            "endColumn": 19,
+            "path": "reports.py",
+            "absolutePath": "C:\\projects\\Honours-Project\\prototype\\scenarios\\b_command_injection\\reports.py"
+        }
+    ],
+    "statistics": {
+        "messageTypeCount": {
+            "fatal": 0,
+            "error": 0,
+            "warning": 0,
+            "refactor": 0,
+            "convention": 5,
+            "info": 0
+        },
+        "modulesLinted": 4,
+        "score": 6.153846153846153
+    }
+}

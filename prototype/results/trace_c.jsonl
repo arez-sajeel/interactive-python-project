@@ -1,0 +1,24 @@
+{"event": "call", "file": "main.py", "line": 1, "function": "<module>", "node": "main", "caller": null, "changes": {}}
+{"event": "line", "file": "main.py", "line": 1, "function": "<module>", "node": "main", "caller": null, "changes": {}}
+{"event": "call", "file": "helpers.py", "line": 1, "function": "<module>", "node": "helpers", "caller": null, "changes": {}}
+{"event": "line", "file": "helpers.py", "line": 1, "function": "<module>", "node": "helpers", "caller": null, "changes": {}}
+{"event": "line", "file": "helpers.py", "line": 5, "function": "<module>", "node": "helpers", "caller": null, "changes": {}}
+{"event": "return", "file": "helpers.py", "line": 5, "function": "<module>", "node": "helpers", "caller": null, "changes": {"return": "None"}}
+{"event": "line", "file": "main.py", "line": 4, "function": "<module>", "node": "main", "caller": null, "changes": {}}
+{"event": "line", "file": "main.py", "line": 10, "function": "<module>", "node": "main", "caller": null, "changes": {}}
+{"event": "line", "file": "main.py", "line": 14, "function": "<module>", "node": "main", "caller": null, "changes": {}}
+{"event": "line", "file": "main.py", "line": 15, "function": "<module>", "node": "main", "caller": null, "changes": {}}
+{"event": "call", "file": "main.py", "line": 10, "function": "main", "node": "main.main", "caller": "main", "changes": {}}
+{"event": "line", "file": "main.py", "line": 11, "function": "main", "node": "main.main", "caller": null, "changes": {}}
+{"event": "call", "file": "main.py", "line": 4, "function": "summarise", "node": "main.summarise", "caller": "main.main", "changes": {"title": "'Hello World'", "body": "'One two three'"}}
+{"event": "line", "file": "main.py", "line": 5, "function": "summarise", "node": "main.summarise", "caller": null, "changes": {"words": "3"}}
+{"event": "call", "file": "helpers.py", "line": 5, "function": "word_count", "node": "helpers.word_count", "caller": "main.summarise", "changes": {"text": "'One two three'"}}
+{"event": "line", "file": "helpers.py", "line": 6, "function": "word_count", "node": "helpers.word_count", "caller": null, "changes": {}}
+{"event": "return", "file": "helpers.py", "line": 6, "function": "word_count", "node": "helpers.word_count", "caller": null, "changes": {"return": "3"}}
+{"event": "line", "file": "main.py", "line": 6, "function": "summarise", "node": "main.summarise", "caller": null, "changes": {}}
+{"event": "exception", "file": "main.py", "line": 6, "function": "summarise", "node": "main.summarise", "caller": null, "changes": {"raised": "AttributeError(\"module 'helpers' has no attribute 'make_slug'\")"}}
+{"event": "return", "file": "main.py", "line": 6, "function": "summarise", "node": "main.summarise", "caller": null, "changes": {"return": "None"}}
+{"event": "exception", "file": "main.py", "line": 11, "function": "main", "node": "main.main", "caller": null, "changes": {"raised": "AttributeError(\"module 'helpers' has no attribute 'make_slug'\")"}}
+{"event": "return", "file": "main.py", "line": 11, "function": "main", "node": "main.main", "caller": null, "changes": {"return": "None"}}
+{"event": "exception", "file": "main.py", "line": 15, "function": "<module>", "node": "main", "caller": null, "changes": {"raised": "AttributeError(\"module 'helpers' has no attribute 'make_slug'\")"}}
+{"event": "return", "file": "main.py", "line": 15, "function": "<module>", "node": "main", "caller": null, "changes": {"return": "None"}}

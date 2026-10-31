@@ -1,0 +1,23 @@
+{"event": "call", "file": "main.py", "line": 1, "function": "<module>", "node": "main", "caller": null, "changes": {}}
+{"event": "line", "file": "main.py", "line": 1, "function": "<module>", "node": "main", "caller": null, "changes": {}}
+{"event": "line", "file": "main.py", "line": 3, "function": "<module>", "node": "main", "caller": null, "changes": {}}
+{"event": "call", "file": "reports.py", "line": 1, "function": "<module>", "node": "reports", "caller": null, "changes": {}}
+{"event": "line", "file": "reports.py", "line": 1, "function": "<module>", "node": "reports", "caller": null, "changes": {}}
+{"event": "line", "file": "reports.py", "line": 4, "function": "<module>", "node": "reports", "caller": null, "changes": {}}
+{"event": "line", "file": "reports.py", "line": 8, "function": "<module>", "node": "reports", "caller": null, "changes": {}}
+{"event": "return", "file": "reports.py", "line": 8, "function": "<module>", "node": "reports", "caller": null, "changes": {"return": "None"}}
+{"event": "line", "file": "main.py", "line": 6, "function": "<module>", "node": "main", "caller": null, "changes": {}}
+{"event": "line", "file": "main.py", "line": 11, "function": "<module>", "node": "main", "caller": null, "changes": {}}
+{"event": "line", "file": "main.py", "line": 12, "function": "<module>", "node": "main", "caller": null, "changes": {}}
+{"event": "call", "file": "main.py", "line": 6, "function": "main", "node": "main.main", "caller": "main", "changes": {"argv": "['C:\\\\projects\\\\Honours-Project\\\\prototype\\\\scenarios\\\\b_command_injection\\\\m..."}}
+{"event": "line", "file": "main.py", "line": 7, "function": "main", "node": "main.main", "caller": null, "changes": {"name": "'report && echo INJECTED'"}}
+{"event": "line", "file": "main.py", "line": 8, "function": "main", "node": "main.main", "caller": null, "changes": {}}
+{"event": "call", "file": "reports.py", "line": 8, "function": "generate_report", "node": "reports.generate_report", "caller": "main.main", "changes": {"name": "'report && echo INJECTED'"}}
+{"event": "line", "file": "reports.py", "line": 9, "function": "generate_report", "node": "reports.generate_report", "caller": null, "changes": {"command": "'echo Generating report report && echo INJECTED'"}}
+{"event": "call", "file": "reports.py", "line": 4, "function": "build_command", "node": "reports.build_command", "caller": "reports.generate_report", "changes": {"name": "'report && echo INJECTED'"}}
+{"event": "line", "file": "reports.py", "line": 5, "function": "build_command", "node": "reports.build_command", "caller": null, "changes": {}}
+{"event": "return", "file": "reports.py", "line": 5, "function": "build_command", "node": "reports.build_command", "caller": null, "changes": {"return": "'echo Generating report report && echo INJECTED'"}}
+{"event": "line", "file": "reports.py", "line": 10, "function": "generate_report", "node": "reports.generate_report", "caller": null, "changes": {}}
+{"event": "return", "file": "reports.py", "line": 10, "function": "generate_report", "node": "reports.generate_report", "caller": null, "changes": {"return": "None"}}
+{"event": "return", "file": "main.py", "line": 8, "function": "main", "node": "main.main", "caller": null, "changes": {"return": "None"}}
+{"event": "return", "file": "main.py", "line": 12, "function": "<module>", "node": "main", "caller": null, "changes": {"return": "None"}}

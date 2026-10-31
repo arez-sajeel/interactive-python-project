@@ -1,0 +1,2 @@
+category,fault_type,tool,rule,message,location
+Security Flaws,Command Injection (CWE-78),bandit,B602,"subprocess call with shell=True identified, security issue.",.\reports.py:10

@@ -1,0 +1,11 @@
+{
+  "title": "Basket total",
+  "entry": "main.py",
+  "argv": [],
+  "defect": {"file": "calc.py", "line": 7},
+  "expected_calls": [
+    ["main.main", "calc.basket_total"],
+    ["main.main", "calc.format_price"]
+  ],
+  "origin": "stand-in"
+}

@@ -1,0 +1,2 @@
+category,fault_type,tool,rule,message,location
+Repository Level,Broken Dependencies,pylint,E1101,Module 'helpers' has no 'make_slug' member,main.py:6

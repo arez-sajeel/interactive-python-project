@@ -1,0 +1,14 @@
+************* Module calc
+calc.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+calc.py:1:0: C0116: Missing function or method docstring (missing-function-docstring)
+calc.py:5:0: C0116: Missing function or method docstring (missing-function-docstring)
+calc.py:10:0: C0116: Missing function or method docstring (missing-function-docstring)
+calc.py:12:18: R2004: Consider using a named constant or an enum instead of '40'. (magic-value-comparison)
+calc.py:16:0: C0116: Missing function or method docstring (missing-function-docstring)
+************* Module main
+main.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+main.py:4:0: C0116: Missing function or method docstring (missing-function-docstring)
+
+------------------------------------------------------------------
+Your code has been rated at 5.56/10 (previous run: 1.54/10, +4.02)
+

@@ -1,0 +1,45 @@
+ step  event     location         function             changes
+    1  call      main.py:1        <module>             
+    2  line      main.py:1        <module>             
+    3  call      calc.py:1        <module>             
+    4  line      calc.py:1        <module>             
+    5  line      calc.py:5        <module>             
+    6  line      calc.py:10       <module>             
+    7  line      calc.py:16       <module>             
+    8  return    calc.py:16       <module>             return=None
+    9  line      main.py:4        <module>             
+   10  line      main.py:10       <module>             
+   11  line      main.py:11       <module>             
+   12  call      main.py:4        main                 
+   13  line      main.py:5        main                 basket=[(12.5, 2), (5.0, 4)]
+   14  line      main.py:6        main                 total=49.5
+   15  call      calc.py:10       basket_total         items=[(12.5, 2), (5.0, 4)]
+   16  line      calc.py:11       basket_total         subtotal=45.0
+   17  call      calc.py:11       basket_total.<locals>.<genexpr> 
+   18  line      calc.py:11       basket_total.<locals>.<genexpr> price=12.5, quantity=2
+   19  call      calc.py:1        line_total           price=12.5, quantity=2
+   20  line      calc.py:2        line_total           
+   21  return    calc.py:2        line_total           return=25.0
+   22  return    calc.py:11       basket_total.<locals>.<genexpr> return=25.0
+   23  call      calc.py:11       basket_total.<locals>.<genexpr> 
+   24  line      calc.py:11       basket_total.<locals>.<genexpr> price=5.0, quantity=4
+   25  call      calc.py:1        line_total           price=5.0, quantity=4
+   26  line      calc.py:2        line_total           
+   27  return    calc.py:2        line_total           return=20.0
+   28  return    calc.py:11       basket_total.<locals>.<genexpr> return=20.0
+   29  call      calc.py:11       basket_total.<locals>.<genexpr> 
+   30  line      calc.py:11       basket_total.<locals>.<genexpr> 
+   31  return    calc.py:11       basket_total.<locals>.<genexpr> return=None
+   32  line      calc.py:12       basket_total         rate=0.1
+   33  line      calc.py:13       basket_total         
+   34  call      calc.py:5        apply_discount       subtotal=45.0, rate=0.1
+   35  line      calc.py:6        apply_discount       discount=4.5
+   36  line      calc.py:7        apply_discount         <- defect line
+   37  return    calc.py:7        apply_discount       return=49.5
+   38  return    calc.py:13       basket_total         return=49.5
+   39  line      main.py:7        main                 
+   40  call      calc.py:16       format_price         amount=49.5
+   41  line      calc.py:17       format_price         
+   42  return    calc.py:17       format_price         return='£49.50'
+   43  return    main.py:7        main                 return=None
+   44  return    main.py:11       <module>             return=None

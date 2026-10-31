@@ -1,0 +1,11 @@
+{
+  "title": "Text summary",
+  "entry": "main.py",
+  "argv": [],
+  "defect": {"file": "main.py", "line": 6},
+  "expected_calls": [
+    ["main.summarise", "helpers.word_count"],
+    ["main.summarise", "helpers.make_slug"]
+  ],
+  "origin": "stand-in"
+}

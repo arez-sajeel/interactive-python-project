@@ -1,0 +1,44 @@
+{"event": "call", "file": "main.py", "line": 1, "function": "<module>", "node": "main", "caller": null, "changes": {}}
+{"event": "line", "file": "main.py", "line": 1, "function": "<module>", "node": "main", "caller": null, "changes": {}}
+{"event": "call", "file": "calc.py", "line": 1, "function": "<module>", "node": "calc", "caller": null, "changes": {}}
+{"event": "line", "file": "calc.py", "line": 1, "function": "<module>", "node": "calc", "caller": null, "changes": {}}
+{"event": "line", "file": "calc.py", "line": 5, "function": "<module>", "node": "calc", "caller": null, "changes": {}}
+{"event": "line", "file": "calc.py", "line": 10, "function": "<module>", "node": "calc", "caller": null, "changes": {}}
+{"event": "line", "file": "calc.py", "line": 16, "function": "<module>", "node": "calc", "caller": null, "changes": {}}
+{"event": "return", "file": "calc.py", "line": 16, "function": "<module>", "node": "calc", "caller": null, "changes": {"return": "None"}}
+{"event": "line", "file": "main.py", "line": 4, "function": "<module>", "node": "main", "caller": null, "changes": {}}
+{"event": "line", "file": "main.py", "line": 10, "function": "<module>", "node": "main", "caller": null, "changes": {}}
+{"event": "line", "file": "main.py", "line": 11, "function": "<module>", "node": "main", "caller": null, "changes": {}}
+{"event": "call", "file": "main.py", "line": 4, "function": "main", "node": "main.main", "caller": "main", "changes": {}}
+{"event": "line", "file": "main.py", "line": 5, "function": "main", "node": "main.main", "caller": null, "changes": {"basket": "[(12.5, 2), (5.0, 4)]"}}
+{"event": "line", "file": "main.py", "line": 6, "function": "main", "node": "main.main", "caller": null, "changes": {"total": "49.5"}}
+{"event": "call", "file": "calc.py", "line": 10, "function": "basket_total", "node": "calc.basket_total", "caller": "main.main", "changes": {"items": "[(12.5, 2), (5.0, 4)]"}}
+{"event": "line", "file": "calc.py", "line": 11, "function": "basket_total", "node": "calc.basket_total", "caller": null, "changes": {"subtotal": "45.0"}}
+{"event": "call", "file": "calc.py", "line": 11, "function": "basket_total.<locals>.<genexpr>", "node": "calc.basket_total", "caller": "calc.basket_total", "changes": {}}
+{"event": "line", "file": "calc.py", "line": 11, "function": "basket_total.<locals>.<genexpr>", "node": "calc.basket_total", "caller": null, "changes": {"price": "12.5", "quantity": "2"}}
+{"event": "call", "file": "calc.py", "line": 1, "function": "line_total", "node": "calc.line_total", "caller": "calc.basket_total", "changes": {"price": "12.5", "quantity": "2"}}
+{"event": "line", "file": "calc.py", "line": 2, "function": "line_total", "node": "calc.line_total", "caller": null, "changes": {}}
+{"event": "return", "file": "calc.py", "line": 2, "function": "line_total", "node": "calc.line_total", "caller": null, "changes": {"return": "25.0"}}
+{"event": "return", "file": "calc.py", "line": 11, "function": "basket_total.<locals>.<genexpr>", "node": "calc.basket_total", "caller": null, "changes": {"return": "25.0"}}
+{"event": "call", "file": "calc.py", "line": 11, "function": "basket_total.<locals>.<genexpr>", "node": "calc.basket_total", "caller": "calc.basket_total", "changes": {}}
+{"event": "line", "file": "calc.py", "line": 11, "function": "basket_total.<locals>.<genexpr>", "node": "calc.basket_total", "caller": null, "changes": {"price": "5.0", "quantity": "4"}}
+{"event": "call", "file": "calc.py", "line": 1, "function": "line_total", "node": "calc.line_total", "caller": "calc.basket_total", "changes": {"price": "5.0", "quantity": "4"}}
+{"event": "line", "file": "calc.py", "line": 2, "function": "line_total", "node": "calc.line_total", "caller": null, "changes": {}}
+{"event": "return", "file": "calc.py", "line": 2, "function": "line_total", "node": "calc.line_total", "caller": null, "changes": {"return": "20.0"}}
+{"event": "return", "file": "calc.py", "line": 11, "function": "basket_total.<locals>.<genexpr>", "node": "calc.basket_total", "caller": null, "changes": {"return": "20.0"}}
+{"event": "call", "file": "calc.py", "line": 11, "function": "basket_total.<locals>.<genexpr>", "node": "calc.basket_total", "caller": "calc.basket_total", "changes": {}}
+{"event": "line", "file": "calc.py", "line": 11, "function": "basket_total.<locals>.<genexpr>", "node": "calc.basket_total", "caller": null, "changes": {}}
+{"event": "return", "file": "calc.py", "line": 11, "function": "basket_total.<locals>.<genexpr>", "node": "calc.basket_total", "caller": null, "changes": {"return": "None"}}
+{"event": "line", "file": "calc.py", "line": 12, "function": "basket_total", "node": "calc.basket_total", "caller": null, "changes": {"rate": "0.1"}}
+{"event": "line", "file": "calc.py", "line": 13, "function": "basket_total", "node": "calc.basket_total", "caller": null, "changes": {}}
+{"event": "call", "file": "calc.py", "line": 5, "function": "apply_discount", "node": "calc.apply_discount", "caller": "calc.basket_total", "changes": {"subtotal": "45.0", "rate": "0.1"}}
+{"event": "line", "file": "calc.py", "line": 6, "function": "apply_discount", "node": "calc.apply_discount", "caller": null, "changes": {"discount": "4.5"}}
+{"event": "line", "file": "calc.py", "line": 7, "function": "apply_discount", "node": "calc.apply_discount", "caller": null, "changes": {}}
+{"event": "return", "file": "calc.py", "line": 7, "function": "apply_discount", "node": "calc.apply_discount", "caller": null, "changes": {"return": "49.5"}}
+{"event": "return", "file": "calc.py", "line": 13, "function": "basket_total", "node": "calc.basket_total", "caller": null, "changes": {"return": "49.5"}}
+{"event": "line", "file": "main.py", "line": 7, "function": "main", "node": "main.main", "caller": null, "changes": {}}
+{"event": "call", "file": "calc.py", "line": 16, "function": "format_price", "node": "calc.format_price", "caller": "main.main", "changes": {"amount": "49.5"}}
+{"event": "line", "file": "calc.py", "line": 17, "function": "format_price", "node": "calc.format_price", "caller": null, "changes": {}}
+{"event": "return", "file": "calc.py", "line": 17, "function": "format_price", "node": "calc.format_price", "caller": null, "changes": {"return": "'\u00a349.50'"}}
+{"event": "return", "file": "main.py", "line": 7, "function": "main", "node": "main.main", "caller": null, "changes": {"return": "None"}}
+{"event": "return", "file": "main.py", "line": 11, "function": "<module>", "node": "main", "caller": null, "changes": {"return": "None"}}

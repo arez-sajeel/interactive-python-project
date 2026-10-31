@@ -1,0 +1,24 @@
+ step  event     location         function             changes
+    1  call      main.py:1        <module>             
+    2  line      main.py:1        <module>             
+    3  line      main.py:3        <module>             
+    4  call      reports.py:1     <module>             
+    5  line      reports.py:1     <module>             
+    6  line      reports.py:4     <module>             
+    7  line      reports.py:8     <module>             
+    8  return    reports.py:8     <module>             return=None
+    9  line      main.py:6        <module>             
+   10  line      main.py:11       <module>             
+   11  line      main.py:12       <module>             
+   12  call      main.py:6        main                 argv=['C:\\projects\\Honours-Project\\prototype\\scenarios\\b_command_injection\\m...
+   13  line      main.py:7        main                 name='report && echo INJECTED'
+   14  line      main.py:8        main                 
+   15  call      reports.py:8     generate_report      name='report && echo INJECTED'
+   16  line      reports.py:9     generate_report      command='echo Generating report report && echo INJECTED'
+   17  call      reports.py:4     build_command        name='report && echo INJECTED'
+   18  line      reports.py:5     build_command        
+   19  return    reports.py:5     build_command        return='echo Generating report report && echo INJECTED'
+   20  line      reports.py:10    generate_report        <- defect line
+   21  return    reports.py:10    generate_report      return=None
+   22  return    main.py:8        main                 return=None
+   23  return    main.py:12       <module>             return=None
