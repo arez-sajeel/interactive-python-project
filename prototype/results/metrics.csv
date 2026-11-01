@@ -1,28 +1,28 @@
 timestamp,scenario,origin,step,count,time_s,notes
-2026-10-31T15:30:41,a_intent_conflict,stand-in,scan_bandit,0,,{}
-2026-10-31T15:30:41,a_intent_conflict,stand-in,scan_pylint,8,,"{""C0114"": 2, ""C0116"": 5, ""R2004"": 1}"
-2026-10-31T15:30:41,a_intent_conflict,stand-in,scan_table3,1,,Magic Constants
-2026-10-31T15:30:41,a_intent_conflict,stand-in,graph_build,2,0.004,"2/2 listed calls found; 0 extra; 7 nodes; median of 5; ast+networkx only, drawing excluded"
-2026-10-31T15:30:42,a_intent_conflict,stand-in,trace,44,0.183,raw 2618; files crossed 2; defect line reached yes; median of 5; includes process start
-2026-10-31T15:30:42,a_intent_conflict,stand-in,overlay,7,,"5 calls highlighted, 2 cross-file"
-2026-10-31T15:30:43,a_intent_conflict,stand-in,tests_before_fix,1,1.227,"1 passed, 1 failed"
-2026-10-31T15:30:45,a_intent_conflict,stand-in,tests_after_fix,2,1.080,"2 passed, 0 failed"
-2026-10-31T15:30:50,,,timeout_check,,5.021,Stopped after 5.0 s (time limit 5 s)
-2026-10-31T15:30:53,b_command_injection,stand-in,scan_bandit,2,,"{""B404"": 1, ""B602"": 1}"
-2026-10-31T15:30:53,b_command_injection,stand-in,scan_pylint,5,,"{""C0114"": 2, ""C0116"": 3}"
-2026-10-31T15:30:53,b_command_injection,stand-in,scan_table3,1,,Command Injection (CWE-78)
-2026-10-31T15:30:53,b_command_injection,stand-in,graph_build,1,0.003,"1/1 listed calls found; 0 extra; 5 nodes; median of 5; ast+networkx only, drawing excluded"
-2026-10-31T15:30:54,b_command_injection,stand-in,trace,23,0.224,raw 2859; files crossed 2; defect line reached yes; median of 5; includes process start
-2026-10-31T15:30:54,b_command_injection,stand-in,overlay,5,,"3 calls highlighted, 1 cross-file"
-2026-10-31T15:30:56,b_command_injection,stand-in,tests_before_fix,1,1.263,"1 passed, 2 failed"
-2026-10-31T15:30:57,b_command_injection,stand-in,tests_after_fix,3,1.115,"3 passed, 0 failed"
-2026-10-31T15:31:02,,,timeout_check,,5.009,Stopped after 5.0 s (time limit 5 s)
-2026-10-31T15:31:05,c_broken_dependency,stand-in,scan_bandit,0,,{}
-2026-10-31T15:31:05,c_broken_dependency,stand-in,scan_pylint,7,,"{""C0114"": 2, ""C0116"": 4, ""E1101"": 1}"
-2026-10-31T15:31:05,c_broken_dependency,stand-in,scan_table3,1,,Broken Dependencies
-2026-10-31T15:31:05,c_broken_dependency,stand-in,graph_build,2,0.003,"2/2 listed calls found; 0 extra; 7 nodes; median of 5; ast+networkx only, drawing excluded"
-2026-10-31T15:31:06,c_broken_dependency,stand-in,trace,24,0.185,raw 2603; files crossed 2; defect line reached yes; median of 5; includes process start
-2026-10-31T15:31:06,c_broken_dependency,stand-in,overlay,5,,"3 calls highlighted, 1 cross-file"
-2026-10-31T15:31:07,c_broken_dependency,stand-in,tests_before_fix,0,1.181,"0 passed, 1 failed"
-2026-10-31T15:31:08,c_broken_dependency,stand-in,tests_after_fix,1,1.058,"1 passed, 0 failed"
-2026-10-31T15:31:14,,,timeout_check,,5.020,Stopped after 5.0 s (time limit 5 s)
+2026-11-01T18:52:12,a_intent_conflict,hand-written,scan_bandit,0,,{}
+2026-11-01T18:52:12,a_intent_conflict,hand-written,scan_pylint,8,,"{""C0114"": 2, ""C0116"": 5, ""R2004"": 1}"
+2026-11-01T18:52:12,a_intent_conflict,hand-written,scan_categories,1,,Magic Constants
+2026-11-01T18:52:13,a_intent_conflict,hand-written,graph_build,2,0.004,"2/2 expected calls found; 0 extra; 7 nodes; median of 5; ast+networkx only, drawing excluded"
+2026-11-01T18:52:14,a_intent_conflict,hand-written,trace,44,0.235,raw 2618; files crossed 2; defect line reached yes; median of 5; includes process start
+2026-11-01T18:52:14,a_intent_conflict,hand-written,overlay,7,,"5 calls highlighted, 2 cross-file"
+2026-11-01T18:52:16,a_intent_conflict,hand-written,tests_before_fix,1,1.669,"1 passed, 1 failed"
+2026-11-01T18:52:17,a_intent_conflict,hand-written,tests_after_fix,2,1.523,"2 passed, 0 failed"
+2026-11-01T18:52:22,,,timeout_check,,5.017,Stopped after 5.0 s (time limit 5 s)
+2026-11-01T18:52:27,b_command_injection,hand-written,scan_bandit,2,,"{""B404"": 1, ""B602"": 1}"
+2026-11-01T18:52:27,b_command_injection,hand-written,scan_pylint,5,,"{""C0114"": 2, ""C0116"": 3}"
+2026-11-01T18:52:27,b_command_injection,hand-written,scan_categories,1,,Command Injection (CWE-78)
+2026-11-01T18:52:27,b_command_injection,hand-written,graph_build,1,0.005,"1/1 expected calls found; 0 extra; 5 nodes; median of 5; ast+networkx only, drawing excluded"
+2026-11-01T18:52:30,b_command_injection,hand-written,trace,23,0.501,raw 2859; files crossed 2; defect line reached yes; median of 5; includes process start
+2026-11-01T18:52:30,b_command_injection,hand-written,overlay,5,,"3 calls highlighted, 1 cross-file"
+2026-11-01T18:52:33,b_command_injection,hand-written,tests_before_fix,1,2.605,"1 passed, 2 failed"
+2026-11-01T18:52:35,b_command_injection,hand-written,tests_after_fix,3,2.773,"3 passed, 0 failed"
+2026-11-01T18:52:40,,,timeout_check,,5.020,Stopped after 5.0 s (time limit 5 s)
+2026-11-01T18:52:46,c_broken_dependency,hand-written,scan_bandit,0,,{}
+2026-11-01T18:52:46,c_broken_dependency,hand-written,scan_pylint,7,,"{""C0114"": 2, ""C0116"": 4, ""E1101"": 1}"
+2026-11-01T18:52:46,c_broken_dependency,hand-written,scan_categories,1,,Broken Dependencies
+2026-11-01T18:52:46,c_broken_dependency,hand-written,graph_build,2,0.006,"2/2 expected calls found; 0 extra; 7 nodes; median of 5; ast+networkx only, drawing excluded"
+2026-11-01T18:52:47,c_broken_dependency,hand-written,trace,24,0.270,raw 2603; files crossed 2; defect line reached yes; median of 5; includes process start
+2026-11-01T18:52:47,c_broken_dependency,hand-written,overlay,5,,"3 calls highlighted, 1 cross-file"
+2026-11-01T18:52:50,c_broken_dependency,hand-written,tests_before_fix,0,2.190,"0 passed, 1 failed"
+2026-11-01T18:52:51,c_broken_dependency,hand-written,tests_after_fix,1,1.364,"1 passed, 0 failed"
+2026-11-01T18:52:56,,,timeout_check,,5.021,Stopped after 5.0 s (time limit 5 s)

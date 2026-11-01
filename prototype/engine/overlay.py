@@ -1,4 +1,4 @@
-"""Highlight the traced path on the dependency graph (PFR5)."""
+"""Highlight the traced path on the dependency graph."""
 from pathlib import Path
 
 import networkx as nx

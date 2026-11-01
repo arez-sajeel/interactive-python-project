@@ -7,5 +7,5 @@
     ["main.summarise", "helpers.word_count"],
     ["main.summarise", "helpers.make_slug"]
   ],
-  "origin": "stand-in"
+  "origin": "hand-written"
 }

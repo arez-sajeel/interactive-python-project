@@ -1,4 +1,4 @@
-"""Run a scenario's unit tests in a separate process with a timeout (PFR6, PNFR2).
+"""Run a scenario's unit tests in a separate process with a timeout.
 
 Commands are passed as argument lists (never through a shell), and the child
 process is killed if it runs longer than TIMEOUT_S.
@@ -52,7 +52,7 @@ def run_tests(folder: Path) -> TestResult:
 
 
 def timeout_check() -> TestResult:
-    """Run a test that never ends, to show the time limit stops runaway code (Q6)."""
+    """Run a test that never ends to check the time limit stops it."""
     with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as tmp:
         tests = Path(tmp) / "tests"
         tests.mkdir()

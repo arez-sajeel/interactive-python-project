@@ -1,4 +1,4 @@
-"""Append one row per run to results/metrics.csv (PFR8)."""
+"""Append one row per run to results/metrics.csv."""
 import csv
 from datetime import datetime
 

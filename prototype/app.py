@@ -1,9 +1,9 @@
-"""Streamlit page: code, dependency graph and trace on one page (PFR9).
+"""Streamlit page showing the code, dependency graph and trace together.
 
 Run with:  streamlit run app.py
 
-Edits are made in a per-session copy of the scenario, so the originals never change.
-The page never shows the defect location or the solution: it is what a student sees.
+Edits are saved to a temporary copy of the scenario, so the original files never change.
+The defect location and solution are not shown on the page.
 """
 import html
 import io
@@ -34,7 +34,7 @@ st.html("""
 state = st.session_state
 
 
-# ---- session helpers ---------------------------------------------------------
+# Session helpers
 
 def workspace(s: Scenario) -> Scenario:
     """This session's working copy of the scenario, created on first open."""
@@ -77,8 +77,7 @@ def step(delta: int, total: int) -> None:
     state["step"] = min(max(1, state.get("step", 1) + delta), total)
 
 
-# ---- page --------------------------------------------------------------------
-
+# Scenario picker
 scenarios = all_scenarios()
 choice = st.columns([1, 2])[0].selectbox("Project", scenarios, format_func=lambda s: s.title)
 ws = workspace(choice)
@@ -87,6 +86,7 @@ files = sorted((p.relative_to(ws.path).as_posix() for p in ws.source_files()),
 
 left, right = st.columns(2, gap="large")
 
+# Code editor and actions
 with left:
     st.subheader("Code")
     current = st.radio("File", files, horizontal=True, key=f"file:{choice.name}",
@@ -109,6 +109,7 @@ with left:
     undo.button("Reset code", width="stretch", on_click=reset, args=(choice,),
                 help="Discard your edits and restore the original files")
 
+    # Test results, and the solve time once an edit makes the tests pass
     if f"tests:{choice.name}" in state:
         result, tested = state[f"tests:{choice.name}"]
         if tested != code:
@@ -127,6 +128,7 @@ with left:
             with st.expander("Test output"):
                 st.code(result.output, language=None)
 
+# Dependency graph, with the last trace highlighted if the code hasn't changed
 traced = state.get(f"trace:{choice.name}")
 result = traced[0] if traced else None
 stale = bool(traced) and traced[1] != code
@@ -141,6 +143,7 @@ with right:
     st.caption("Blue shows the path the code took in the last trace." if nodes
                else "Boxes are files and functions. Arrows are calls; dashed lines are imports.")
 
+# Step-by-step trace
 st.divider()
 st.subheader("Trace")
 

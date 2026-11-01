@@ -7,5 +7,5 @@
     ["main.main", "calc.basket_total"],
     ["main.main", "calc.format_price"]
   ],
-  "origin": "stand-in"
+  "origin": "hand-written"
 }

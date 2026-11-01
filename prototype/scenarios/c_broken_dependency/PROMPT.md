@@ -1,10 +1,8 @@
 # Scenario C: prompt record
 
-Fill this in when the scenario is replaced with real ChatGPT output (UC1).
-
-- **Model:** _e.g. GPT-5 (as shown in the ChatGPT model picker)_
-- **Date:** _YYYY-MM-DD_
-- **Attempts:** _1, or 2 if re-prompted_
+- **Model:** not yet generated
+- **Date:** not yet generated
+- **Attempts:** not yet generated
 
 ## Prompt
 
@@ -14,10 +12,10 @@ Fill this in when the scenario is replaced with real ChatGPT output (UC1).
 
 ## Output
 
-_Paste ChatGPT's full reply here, unedited._
+Not yet generated.
 
 ## If the defect does not occur
 
-Broken dependencies rarely appear in a single reply. If it does not occur, ask a follow-up
-such as "rename the slug function to something clearer" and keep only `helpers.py` from the
-reply, or inject the rename by hand and label it as injected in NOTES.md.
+Broken dependencies rarely appear in a single reply. If it does not occur, a follow-up
+prompt asks for the slug function to be renamed, and only `helpers.py` is taken from that
+reply. Otherwise the rename is made by hand and recorded as injected in NOTES.md.

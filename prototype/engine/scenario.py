@@ -1,4 +1,4 @@
-"""Load a scenario folder and its scenario.json (PFR1)."""
+"""Load a scenario folder and its scenario.json."""
 import json
 import shutil
 import tempfile
@@ -32,10 +32,6 @@ class Scenario:
     @property
     def id(self) -> str:
         return self.name.split("_", 1)[0]
-
-    @property
-    def is_stand_in(self) -> bool:
-        return self.origin == "stand-in"
 
     def source_files(self) -> list[Path]:
         """The scenario's own .py files, excluding tests and the solution."""

@@ -1,15 +1,15 @@
-"""Researcher CLI: run each prototype step on a scenario and log metrics.
+"""Command line: run each step on a scenario and log the results.
 
     python run.py list
-    python run.py all a           every step below, in build order
-    python run.py scan a          Bandit and pylint (PFR7)
-    python run.py graph a         dependency graph and accuracy (PFR1, PFR2, PNFR3)
-    python run.py trace a         execution trace (PFR3, PFR4)
-    python run.py overlay a       executed path on the graph (PFR5)
-    python run.py test a          tests before and after the fix (PFR6)
-    python run.py timeout         infinite loop stopped by the time limit (Q6)
+    python run.py all a           every step below
+    python run.py scan a          Bandit and pylint
+    python run.py graph a         dependency graph and call accuracy
+    python run.py trace a         execution trace
+    python run.py overlay a       executed path on the graph
+    python run.py test a          tests before and after the fix
+    python run.py timeout         infinite loop stopped by the time limit
 
-Graph and trace times are the median of 5 runs (PNFR1).
+Graph and trace times are the median of 5 runs.
 """
 import argparse
 import json
@@ -26,6 +26,7 @@ TARGET_S = 2.5
 
 
 def median_time(fn) -> tuple[float, object]:
+    """Run fn several times and return the median time and the last result."""
     times, result = [], None
     for _ in range(RUNS):
         start = perf_counter()
@@ -35,39 +36,43 @@ def median_time(fn) -> tuple[float, object]:
 
 
 def check(ok: bool) -> str:
+    """Format a pass or fail check for printing."""
     return "yes" if ok else "NO"
 
 
 def do_scan(s: Scenario):
+    """Scan with Bandit and pylint and save the reports."""
     result = scan.scan(s)
     for tool in ("bandit", "pylint"):
         found = result[tool]
         print(f"{tool}: {sum(found.values())} findings  {dict(found.most_common())}")
         metrics.log(s, f"scan_{tool}", sum(found.values()), notes=json.dumps(dict(found)))
-    print(f"Table 3 types found: {', '.join(result['table3']) or 'none'}")
-    metrics.log(s, "scan_table3", len(result["table3"]), notes="; ".join(result["table3"]))
-    print(f"Saved bandit_{s.id}.json, pylint_{s.id}.txt and table3_{s.id}.csv")
+    print(f"Defect categories found: {', '.join(result['categories']) or 'none'}")
+    metrics.log(s, "scan_categories", len(result["categories"]), notes="; ".join(result["categories"]))
+    print(f"Saved bandit_{s.id}.json, pylint_{s.id}.txt and defects_{s.id}.csv")
 
 
 def do_graph(s: Scenario):
+    """Build the dependency graph, check it against the expected calls and save it."""
     seconds, graph = median_time(lambda: deps.build_graph(s))
     acc = deps.accuracy(graph, s.expected_calls)
     path = deps.save(graph, RESULTS / f"graph_{s.id}.png")
     print(deps.describe(graph))
-    print(f"\nCross-file calls found: {acc['found']} of {acc['listed']} listed by hand")
+    print(f"\nCross-file calls found: {acc['found']} of {acc['listed']} expected")
     for a, b in acc["missed"]:
         print(f"  missed: {a} -> {b}")
     for a, b in acc["extra"]:
-        print(f"  not in manual list: {a} -> {b}")
+        print(f"  not expected: {a} -> {b}")
     print(f"Build time (median of {RUNS}): {seconds:.3f} s  under {TARGET_S} s: {check(seconds < TARGET_S)}")
     print(f"Saved {path.name}")
     metrics.log(s, "graph_build", acc["found"], seconds,
-                f"{acc['found']}/{acc['listed']} listed calls found; {len(acc['extra'])} extra; "
+                f"{acc['found']}/{acc['listed']} expected calls found; {len(acc['extra'])} extra; "
                 f"{graph.number_of_nodes()} nodes; median of {RUNS}; ast+networkx only, drawing excluded")
     return graph
 
 
 def do_trace(s: Scenario):
+    """Trace the entry point and save the trace as text and JSON lines."""
     seconds, result = median_time(lambda: trace(s))
     if result["timed_out"] or not result["events"]:
         print(f"Trace failed: {result['error']}")
@@ -95,6 +100,7 @@ def do_trace(s: Scenario):
 
 
 def do_overlay(s: Scenario, graph=None, result=None):
+    """Highlight the traced path on the graph and save it."""
     graph = graph or deps.build_graph(s)
     result = result or trace(s)
     path = RESULTS / f"overlay_{s.id}.png"
@@ -106,6 +112,7 @@ def do_overlay(s: Scenario, graph=None, result=None):
 
 
 def do_test(s: Scenario):
+    """Run the tests on the original code, then with the solution applied."""
     for label, fixed in (("before fix", False), ("after fix", True)):
         with s.workspace(fixed=fixed) as copy:
             result = runner.run_tests(copy.path)
@@ -114,6 +121,7 @@ def do_test(s: Scenario):
 
 
 def do_timeout():
+    """Check that the time limit stops an infinite loop."""
     result = runner.timeout_check()
     print(f"Infinite loop stopped by the time limit: {check(result.timed_out)} "
           f"({result.seconds:.2f} s, limit {runner.TIMEOUT_S} s)")
@@ -138,8 +146,8 @@ def main():
         parser.error("this step needs a scenario, e.g. python run.py graph a")
 
     s = load(args.scenario)
-    if s.is_stand_in:
-        print(f"Note: {s.name} is a stand-in, not LLM output. Do not report its results as evidence.\n")
+    if s.origin == "hand-written":
+        print(f"{s.name} uses hand-written placeholder code, not LLM output.\n")
     steps = {"scan": do_scan, "graph": do_graph, "trace": do_trace, "overlay": do_overlay, "test": do_test}
     if args.step != "all":
         steps[args.step](s)

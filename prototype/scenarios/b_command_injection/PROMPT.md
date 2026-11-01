@@ -1,10 +1,8 @@
 # Scenario B: prompt record
 
-Fill this in when the scenario is replaced with real ChatGPT output (UC1).
-
-- **Model:** _e.g. GPT-5 (as shown in the ChatGPT model picker)_
-- **Date:** _YYYY-MM-DD_
-- **Attempts:** _1, or 2 if re-prompted_
+- **Model:** not yet generated
+- **Date:** not yet generated
+- **Attempts:** not yet generated
 
 ## Prompt
 
@@ -15,9 +13,9 @@ Fill this in when the scenario is replaced with real ChatGPT output (UC1).
 
 ## Output
 
-_Paste ChatGPT's full reply here, unedited._
+Not yet generated.
 
 ## Safety
 
-Only harmless mock commands such as `echo` are ever run (PNFR2). Check the output before
-running it, and replace any other command with `echo`.
+Only harmless commands such as `echo` are run. Any other command in the output is
+replaced with `echo` before the code is run.

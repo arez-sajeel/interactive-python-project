@@ -1,4 +1,4 @@
-"""Cross-file execution tracer using sys.settrace (PFR3, PFR4).
+"""Cross-file execution tracer using sys.settrace.
 
 The scenario runs in a child process with a timeout, so a runaway script cannot
 hang the engine. Only frames from the scenario's own files are kept (no standard
@@ -58,7 +58,7 @@ def executed_path(events: list[dict]) -> tuple[set[str], set[tuple[str, str]]]:
 
 
 def format_trace(events: list[dict], mark: tuple[str, int] | None = None) -> str:
-    """One readable line per step: step, event, file:line, function, changed variables (PNFR4)."""
+    """One readable line per step: step, event, file:line, function, changed variables."""
     lines = [f"{'step':>5}  {'event':<9} {'location':<16} {'function':<20} changes"]
     for i, e in enumerate(events, 1):
         changes = ", ".join(f"{k}={v}" for k, v in e["changes"].items())
@@ -68,7 +68,7 @@ def format_trace(events: list[dict], mark: tuple[str, int] | None = None) -> str
     return "\n".join(lines)
 
 
-# ---- child process -----------------------------------------------------------
+# Everything below runs inside the child process
 
 def _safe_repr(value) -> str:
     try:

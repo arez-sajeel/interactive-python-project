@@ -1,4 +1,4 @@
-"""Run Bandit and pylint on a scenario and map findings to Table 3 (PFR7)."""
+"""Run Bandit and pylint on a scenario and map findings to defect categories."""
 import csv
 import json
 import subprocess
@@ -7,9 +7,9 @@ from collections import Counter
 
 from engine.scenario import RESULTS, Scenario
 
-# Rule -> (Table 3 defect category, fault type). Intent conflicts and logic faults
-# cannot be found statically, so they are recorded by hand in each scenario's NOTES.md.
-TABLE3 = {
+# Rule -> (defect category, fault type). Intent conflicts and logic faults can't be
+# found statically, so they are described in each scenario's NOTES.md instead.
+CATEGORIES = {
     **dict.fromkeys(["B602", "B604", "B605", "B609"], ("Security Flaws", "Command Injection (CWE-78)")),
     **dict.fromkeys(["B105", "B106", "B107"], ("Security Flaws", "Hardcoded Credentials (CWE-798)")),
     "W0613": ("Syntactic & Stylistic", "Unused Parameters"),
@@ -40,15 +40,15 @@ def scan(scenario: Scenario) -> dict:
         for m in json.loads(pylint_json.read_text(encoding="utf-8"))["messages"]
     ]
 
-    with (RESULTS / f"table3_{scenario.id}.csv").open("w", newline="", encoding="utf-8") as f:
+    with (RESULTS / f"defects_{scenario.id}.csv").open("w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
         writer.writerow(["category", "fault_type", "tool", "rule", "message", "location"])
         for tool, rule, message, location in findings:
-            if rule in TABLE3:
-                writer.writerow([*TABLE3[rule], tool, rule, message, location])
+            if rule in CATEGORIES:
+                writer.writerow([*CATEGORIES[rule], tool, rule, message, location])
 
     return {
         "bandit": Counter(rule for tool, rule, *_ in findings if tool == "bandit"),
         "pylint": Counter(rule for tool, rule, *_ in findings if tool == "pylint"),
-        "table3": sorted({TABLE3[rule][1] for _, rule, *_ in findings if rule in TABLE3}),
+        "categories": sorted({CATEGORIES[rule][1] for _, rule, *_ in findings if rule in CATEGORIES}),
     }

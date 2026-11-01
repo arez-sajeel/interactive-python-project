@@ -1,74 +1,82 @@
-# Interactive Python Project: proof of concept (Section 3.7)
+# Interactive Python Project: prototype
 
-Engine behind RQ1 and RQ2: dependency graph (ast and networkx), cross-file tracer
-(sys.settrace), executed-path overlay, and a test runner with a time limit. There is also a
-minimal Streamlit page. Requirement IDs (PFR, PNFR) refer to the prototype brief.
+A proof of concept for the analysis engine behind the project. Given a small multi-file
+Python project, it can:
 
-## Set up (Windows, Python 3.11 or later, no Docker)
+- scan the code with Bandit and pylint
+- build a dependency graph of imports and cross-file calls (ast and networkx)
+- trace execution across files with `sys.settrace`
+- highlight the executed path on the dependency graph
+- run unit tests in a separate process with a 5 second time limit
 
-```powershell
+There is also a simple Streamlit page that shows the code, graph and trace together.
+
+## Requirements
+
+- Python 3.11 or later (tested on Windows 11 with Python 3.14)
+
+## Setup
+
+```
 cd prototype
 python -m venv .venv
-.venv\Scripts\activate
+.venv\Scripts\activate          # Windows
+source .venv/bin/activate       # macOS or Linux
 pip install -r requirements.txt
 ```
 
-## Run
+## Usage
 
-```powershell
-python run.py list          # scenarios and their origin
-python run.py all a         # scan, graph, trace, overlay, tests and timeout for Scenario A
-python run.py graph b       # or one step at a time: scan, graph, trace, overlay, test
-python run.py timeout       # infinite loop stopped by the 5 s limit
-streamlit run app.py        # code, graph and trace on one page
+```
+python run.py list              # list the scenarios
+python run.py all a             # run every step on scenario A
+python run.py graph b           # or a single step: scan, graph, trace, overlay, test
+python run.py timeout           # check the time limit stops an infinite loop
+streamlit run app.py            # open the Streamlit page
 ```
 
-Outputs go to `results/`, and every run adds a row to `results/metrics.csv`.
+Output files are written to `results/`, and each run adds a row to `results/metrics.csv`.
 
-| File | Question | Requirement |
-|---|---|---|
-| `bandit_<id>.json`, `pylint_<id>.txt`, `table3_<id>.csv` | Q1 | PFR7 |
-| `graph_<id>.png`, accuracy row in `metrics.csv` | Q2, Q5 | PFR1, PFR2, PNFR3 |
-| `trace_<id>.jsonl`, `trace_<id>.txt` (Diagram 6) | Q3, Q5 | PFR3, PFR4, PNFR4 |
-| `overlay_<id>.png` (Diagram 5) | Q4 | PFR5 |
-| `tests_before_fix`, `tests_after_fix`, `timeout_check` rows | Q6 | PFR6, PNFR2 |
-| `solve` row, logged by the Streamlit page when your edit makes the tests pass | Q7 | UC6 |
+| Output | Contents |
+|---|---|
+| `bandit_<id>.json`, `pylint_<id>.txt`, `defects_<id>.csv` | Scan reports and findings grouped by defect category |
+| `graph_<id>.png` | Dependency graph |
+| `trace_<id>.txt`, `trace_<id>.jsonl` | Step-by-step trace: file, line, function and changed variables |
+| `overlay_<id>.png` | Dependency graph with the executed path highlighted |
+| `metrics.csv` | Timings, counts and test results for each run |
 
-Graph and trace times are the median of 5 runs. Graph time covers parsing and building only,
-not drawing. Trace time includes starting the child process.
+Graph and trace times are the median of 5 runs. The graph time covers parsing and building
+the graph, not drawing it. The trace time includes starting the child process.
 
 ## Scenarios
 
+| ID | Defect type | Files |
+|---|---|---|
+| A | Intent conflict: runs, but gives the wrong total | `main.py`, `calc.py` |
+| B | Command injection (CWE-78) | `main.py`, `reports.py` |
+| C | Broken dependency: calls a function that was renamed | `main.py`, `helpers.py` |
+
+Each scenario folder contains:
+
 ```
-scenarios/<id>_<name>/
-├── main.py, ...        code under study (the entry point is set in scenario.json)
-├── tests/              unit tests: fail before the fix, pass after
-├── solution/           fixed files, copied over a temporary copy for "after fix"
-├── scenario.json       entry point, arguments, defect file and line, manual call list, origin
-├── PROMPT.md           ChatGPT prompt, model, date and output
-└── NOTES.md            defect, Table 3 category, natural or injected
+main.py, ...        code to analyse
+tests/              unit tests that fail before the fix and pass after
+solution/           fixed version of the faulty file
+scenario.json       entry point, defect location, expected cross-file calls, origin
+PROMPT.md           prompt, model and date used to generate the code
+NOTES.md            description of the defect
 ```
 
-**The three scenarios here are stand-ins written by hand**, so the engine could be built and
-checked. They are labelled `"origin": "stand-in"`, the CLI warns when you run them, and
-`metrics.csv` records the origin on every row. Do not report their results as evidence.
+The current scenarios contain hand-written placeholder code (`"origin": "hand-written"`)
+and will be replaced with LLM-generated code.
 
-To replace one with real LLM output (UC1):
+## Safety
 
-1. Run the prompt in `PROMPT.md` in ChatGPT. Save the reply, model and date in `PROMPT.md`.
-2. Replace the `.py` files with the output. Write or adapt `tests/` and add the fix to `solution/`.
-3. Update `scenario.json`: `origin` (`llm` or `llm+injected`), `defect`, and `expected_calls`.
-   Write `expected_calls` by reading the code, before running the graph, so the accuracy check
-   stays independent.
-4. Record in `NOTES.md` whether the defect occurred naturally or was injected.
-5. Run `python run.py all <id>` and commit.
-
-## Safety (PNFR2)
-
-Scenario code and tests run in a separate process, with an argument list (never a shell) and
-a 5 s limit. The only shell call is inside Scenario B, and it runs `echo`.
+Scenario code and tests run in a separate process with a time limit, and commands are
+passed as argument lists rather than through a shell. Scenario B is the only place a shell
+is used, and it only runs `echo`.
 
 ## Known limitations
 
-- Calls on object instances (`basket.add()`) are not resolved by the static graph.
-- Relative imports in packages are treated as flat modules; the scenarios are flat.
+- Method calls on object instances (for example `basket.add()`) are not detected by the graph.
+- Packages with relative imports are treated as flat modules.

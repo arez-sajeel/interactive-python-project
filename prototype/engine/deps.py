@@ -1,4 +1,4 @@
-"""Dependency graph of imports and cross-file calls using ast and networkx (PFR1, PFR2).
+"""Dependency graph of imports and cross-file calls using ast and networkx.
 
 Nodes are modules (their module-level code), top-level functions, classes and methods,
 named like calc, calc.basket_total and shop.Basket.add. Known limitation: calls on
@@ -103,7 +103,7 @@ def cross_file_calls(graph: nx.DiGraph) -> set[tuple[str, str]]:
 
 
 def accuracy(graph: nx.DiGraph, expected: tuple[tuple[str, str], ...]) -> dict:
-    """Compare the cross-file calls found against the hand-made list (PNFR3)."""
+    """Compare the cross-file calls found with a list made by reading the code."""
     found = cross_file_calls(graph)
     listed = set(expected)
     return {
@@ -118,7 +118,7 @@ INK, MUTED, FAINT, ACCENT, ERROR = "#1f2328", "#59636e", "#d1d9e0", "#0b62d6", "
 
 
 def draw(graph: nx.DiGraph, out, executed_nodes=frozenset(), executed_edges=frozenset()) -> None:
-    """Draw one column per file. If an executed path is given, highlight it (PFR5)."""
+    """Draw one column per file. If an executed path is given, highlight it."""
     modules = sorted({d["module"] for _, d in graph.nodes(data=True) if d["kind"] == "module"})
     # Order each column depth-first from the module-level code, so callees sit below their callers.
     calls = nx.DiGraph((a, b) for a, b, d in graph.edges(data=True) if d["kind"] == "call")
@@ -170,7 +170,7 @@ def draw(graph: nx.DiGraph, out, executed_nodes=frozenset(), executed_edges=froz
 
 
 def describe(graph: nx.DiGraph) -> str:
-    """Plain-text listing of modules and their functions (PFR1)."""
+    """Plain-text listing of modules and their functions."""
     lines = []
     for module in sorted(n for n, d in graph.nodes(data=True) if d["kind"] == "module"):
         lines.append(f"{graph.nodes[module]['file']}")
