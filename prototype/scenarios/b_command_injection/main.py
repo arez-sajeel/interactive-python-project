@@ -1,12 +1,9 @@
 import sys
-
 from reports import generate_report
 
-
-def main(argv):
-    name = argv[1] if len(argv) > 1 else "monthly"
-    generate_report(name)
-
-
 if __name__ == "__main__":
-    main(sys.argv)
+    if len(sys.argv) != 2:
+        print("Usage: python main.py <report_name>")
+        sys.exit(1)
+
+    generate_report(sys.argv[1])

@@ -20,8 +20,8 @@ class Scenario:
     title: str
     entry: str
     argv: tuple[str, ...]
-    defect_file: str
-    defect_line: int
+    defect_file: str | None  # None until a defect is chosen
+    defect_line: int | None
     expected_calls: tuple[tuple[str, str], ...]
     origin: str
 
@@ -70,8 +70,8 @@ def load(key: str) -> Scenario:
         title=config["title"],
         entry=config["entry"],
         argv=tuple(config.get("argv", [])),
-        defect_file=config["defect"]["file"],
-        defect_line=config["defect"]["line"],
+        defect_file=(config.get("defect") or {}).get("file"),
+        defect_line=(config.get("defect") or {}).get("line"),
         expected_calls=tuple(tuple(c) for c in config["expected_calls"]),
         origin=config["origin"],
     )

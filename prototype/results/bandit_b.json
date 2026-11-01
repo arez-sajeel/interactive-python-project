@@ -1,6 +1,6 @@
 {
   "errors": [],
-  "generated_at": "2026-11-01T18:52:25Z",
+  "generated_at": "2026-11-01T19:34:52Z",
   "metrics": {
     ".\\main.py": {
       "CONFIDENCE.HIGH": 0,
@@ -24,7 +24,7 @@
       "SEVERITY.LOW": 1,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 6,
+      "loc": 3,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -37,7 +37,7 @@
       "SEVERITY.LOW": 1,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 13,
+      "loc": 10,
       "nosec": 0,
       "skipped_tests": 0
     }
@@ -64,9 +64,9 @@
       "test_name": "blacklist"
     },
     {
-      "code": "9     command = build_command(name)\n10     subprocess.run(command, shell=True, check=False)\n",
+      "code": "4 def generate_report(name):\n5     subprocess.run(f\"echo Generating report {name}\", shell=True, check=True)\n",
       "col_offset": 4,
-      "end_col_offset": 52,
+      "end_col_offset": 76,
       "filename": ".\\reports.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -75,9 +75,9 @@
       },
       "issue_severity": "HIGH",
       "issue_text": "subprocess call with shell=True identified, security issue.",
-      "line_number": 10,
+      "line_number": 5,
       "line_range": [
-        10
+        5
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.9.4/plugins/b602_subprocess_popen_with_shell_equals_true.html",
       "test_id": "B602",

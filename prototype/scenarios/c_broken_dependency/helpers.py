@@ -1,6 +1,9 @@
-def slugify(text):
-    return "-".join(text.lower().split())
+import re
 
 
-def word_count(text):
+def title_to_slug(title):
+    return re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")
+
+
+def count_words(text):
     return len(text.split())

@@ -59,9 +59,10 @@ def snapshot(ws: Scenario) -> tuple:
 
 
 @st.cache_data(show_spinner=False, max_entries=32)
-def graph_png(_ws: Scenario, code: tuple, nodes: tuple, edges: tuple) -> bytes:
+def graph_png(_ws: Scenario, code: tuple, nodes: tuple, edges: tuple, current: tuple | None) -> bytes:
     buf = io.BytesIO()
-    deps.draw(deps.build_graph(_ws), buf, executed_nodes=set(nodes), executed_edges=set(edges))
+    deps.draw(deps.build_graph(_ws), buf, executed_nodes=set(nodes), executed_edges=set(edges),
+              current=current)
     return buf.getvalue()
 
 
@@ -78,8 +79,9 @@ def step(delta: int, total: int) -> None:
 
 
 # Scenario picker
-scenarios = all_scenarios()
-choice = st.columns([1, 2])[0].selectbox("Project", scenarios, format_func=lambda s: s.title)
+scenarios = {s.name: s for s in all_scenarios()}
+picked = st.columns([1, 2])[0].selectbox("Project", list(scenarios), format_func=lambda n: scenarios[n].title)
+choice = scenarios[picked]
 ws = workspace(choice)
 files = sorted((p.relative_to(ws.path).as_posix() for p in ws.source_files()),
                key=lambda f: f != ws.entry)  # entry point first
@@ -118,7 +120,7 @@ with left:
             if f"solved:{choice.name}" not in state and code != snapshot(choice):
                 seconds = time.monotonic() - state[f"start:{choice.name}"]
                 state[f"solved:{choice.name}"] = seconds
-                metrics.log(choice, "solve", "", seconds, f"{seconds / 60:.1f} min via Streamlit page")
+                metrics.log(choice, "solve", "solved", seconds, f"{seconds / 60:.1f} min via Streamlit page")
             solved = state.get(f"solved:{choice.name}")
             note = f" Solved in {int(solved // 60)} min {int(solved % 60)} s." if solved else ""
             st.success(f"All {result.passed} tests pass.{note}")
@@ -128,20 +130,23 @@ with left:
             with st.expander("Test output"):
                 st.code(result.output, language=None)
 
-# Dependency graph, with the last trace highlighted if the code hasn't changed
+# Dependency graph, with the path up to the current trace step highlighted if the code hasn't changed
 traced = state.get(f"trace:{choice.name}")
 result = traced[0] if traced else None
 stale = bool(traced) and traced[1] != code
 
 with right:
     st.subheader("Dependency graph")
-    nodes, edges = (), ()
+    nodes, edges, now = (), (), None
     if result and result["events"] and not stale:
-        n, e = executed_path(result["events"])
+        upto = min(max(state.get("step", 1), 1), len(result["events"]))
+        n, e = executed_path(result["events"][:upto])
         nodes, edges = tuple(sorted(n)), tuple(sorted(e))
-    st.image(graph_png(ws, code, nodes, edges), width="stretch")
-    st.caption("Blue shows the path the code took in the last trace." if nodes
-               else "Boxes are files and functions. Arrows are calls; dashed lines are imports.")
+        event = result["events"][upto - 1]
+        now = (event["node"], event["line"])
+    st.image(graph_png(ws, code, nodes, edges, now), width="stretch")
+    st.caption("Blue: the path taken so far. Red: the current step. Grey lines link functions to their file." if now
+               else "Arrows are calls, dashed lines are imports, and grey lines link functions to their file.")
 
 # Step-by-step trace
 st.divider()

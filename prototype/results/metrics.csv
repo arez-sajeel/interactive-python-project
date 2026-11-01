@@ -1,28 +1,35 @@
 timestamp,scenario,origin,step,count,time_s,notes
-2026-11-01T18:52:12,a_intent_conflict,hand-written,scan_bandit,0,,{}
-2026-11-01T18:52:12,a_intent_conflict,hand-written,scan_pylint,8,,"{""C0114"": 2, ""C0116"": 5, ""R2004"": 1}"
-2026-11-01T18:52:12,a_intent_conflict,hand-written,scan_categories,1,,Magic Constants
-2026-11-01T18:52:13,a_intent_conflict,hand-written,graph_build,2,0.004,"2/2 expected calls found; 0 extra; 7 nodes; median of 5; ast+networkx only, drawing excluded"
-2026-11-01T18:52:14,a_intent_conflict,hand-written,trace,44,0.235,raw 2618; files crossed 2; defect line reached yes; median of 5; includes process start
-2026-11-01T18:52:14,a_intent_conflict,hand-written,overlay,7,,"5 calls highlighted, 2 cross-file"
-2026-11-01T18:52:16,a_intent_conflict,hand-written,tests_before_fix,1,1.669,"1 passed, 1 failed"
-2026-11-01T18:52:17,a_intent_conflict,hand-written,tests_after_fix,2,1.523,"2 passed, 0 failed"
-2026-11-01T18:52:22,,,timeout_check,,5.017,Stopped after 5.0 s (time limit 5 s)
-2026-11-01T18:52:27,b_command_injection,hand-written,scan_bandit,2,,"{""B404"": 1, ""B602"": 1}"
-2026-11-01T18:52:27,b_command_injection,hand-written,scan_pylint,5,,"{""C0114"": 2, ""C0116"": 3}"
-2026-11-01T18:52:27,b_command_injection,hand-written,scan_categories,1,,Command Injection (CWE-78)
-2026-11-01T18:52:27,b_command_injection,hand-written,graph_build,1,0.005,"1/1 expected calls found; 0 extra; 5 nodes; median of 5; ast+networkx only, drawing excluded"
-2026-11-01T18:52:30,b_command_injection,hand-written,trace,23,0.501,raw 2859; files crossed 2; defect line reached yes; median of 5; includes process start
-2026-11-01T18:52:30,b_command_injection,hand-written,overlay,5,,"3 calls highlighted, 1 cross-file"
-2026-11-01T18:52:33,b_command_injection,hand-written,tests_before_fix,1,2.605,"1 passed, 2 failed"
-2026-11-01T18:52:35,b_command_injection,hand-written,tests_after_fix,3,2.773,"3 passed, 0 failed"
-2026-11-01T18:52:40,,,timeout_check,,5.020,Stopped after 5.0 s (time limit 5 s)
-2026-11-01T18:52:46,c_broken_dependency,hand-written,scan_bandit,0,,{}
-2026-11-01T18:52:46,c_broken_dependency,hand-written,scan_pylint,7,,"{""C0114"": 2, ""C0116"": 4, ""E1101"": 1}"
-2026-11-01T18:52:46,c_broken_dependency,hand-written,scan_categories,1,,Broken Dependencies
-2026-11-01T18:52:46,c_broken_dependency,hand-written,graph_build,2,0.006,"2/2 expected calls found; 0 extra; 7 nodes; median of 5; ast+networkx only, drawing excluded"
-2026-11-01T18:52:47,c_broken_dependency,hand-written,trace,24,0.270,raw 2603; files crossed 2; defect line reached yes; median of 5; includes process start
-2026-11-01T18:52:47,c_broken_dependency,hand-written,overlay,5,,"3 calls highlighted, 1 cross-file"
-2026-11-01T18:52:50,c_broken_dependency,hand-written,tests_before_fix,0,2.190,"0 passed, 1 failed"
-2026-11-01T18:52:51,c_broken_dependency,hand-written,tests_after_fix,1,1.364,"1 passed, 0 failed"
-2026-11-01T18:52:56,,,timeout_check,,5.021,Stopped after 5.0 s (time limit 5 s)
+2026-11-01T19:09:03,a_intent_conflict,llm+injected,scan_bandit,0,,{}
+2026-11-01T19:09:03,a_intent_conflict,llm+injected,scan_pylint,2,,"{""C0114"": 2}"
+2026-11-01T19:09:03,a_intent_conflict,llm+injected,scan_categories,0,,
+2026-11-01T19:09:03,a_intent_conflict,llm+injected,graph_build,2,0.005,"2/2 expected calls found; 0 extra; 4 nodes; median of 5; ast+networkx only, drawing excluded"
+2026-11-01T19:09:04,a_intent_conflict,llm+injected,trace,38,0.233,raw 6506; files crossed 2; defect line reached yes; median of 5; includes process start
+2026-11-01T19:09:04,a_intent_conflict,llm+injected,overlay,4,,"2 calls highlighted, 2 cross-file"
+2026-11-01T19:09:07,a_intent_conflict,llm+injected,tests_before_fix,1,2.578,"1 passed, 2 failed"
+2026-11-01T19:09:08,a_intent_conflict,llm+injected,tests_after_fix,3,1.208,"3 passed, 0 failed"
+2026-11-01T19:09:13,,,timeout_check,,5.009,Stopped after 5.0 s (time limit 5 s)
+2026-11-01T19:09:17,b_command_injection,llm+injected,scan_bandit,2,,"{""B404"": 1, ""B602"": 1}"
+2026-11-01T19:09:17,b_command_injection,llm+injected,scan_pylint,4,,"{""C0114"": 2, ""R2004"": 1, ""C0116"": 1}"
+2026-11-01T19:09:17,b_command_injection,llm+injected,scan_categories,2,,Command Injection (CWE-78); Magic Constants
+2026-11-01T19:09:17,b_command_injection,llm+injected,graph_build,1,0.003,"1/1 expected calls found; 0 extra; 3 nodes; median of 5; ast+networkx only, drawing excluded"
+2026-11-01T19:09:18,b_command_injection,llm+injected,trace,14,0.236,raw 2898; files crossed 2; defect line reached yes; median of 5; includes process start
+2026-11-01T19:09:18,b_command_injection,llm+injected,overlay,3,,"1 call highlighted, 1 cross-file"
+2026-11-01T19:09:20,b_command_injection,llm+injected,tests_before_fix,1,1.472,"1 passed, 2 failed"
+2026-11-01T19:09:21,b_command_injection,llm+injected,tests_after_fix,3,1.233,"3 passed, 0 failed"
+2026-11-01T19:09:26,,,timeout_check,,5.018,Stopped after 5.0 s (time limit 5 s)
+2026-11-01T19:09:30,c_broken_dependency,llm+injected,scan_bandit,0,,{}
+2026-11-01T19:09:30,c_broken_dependency,llm+injected,scan_pylint,8,,"{""C0114"": 2, ""C0116"": 3, ""E0611"": 1, ""W0621"": 2}"
+2026-11-01T19:09:30,c_broken_dependency,llm+injected,scan_categories,1,,Broken Dependencies
+2026-11-01T19:09:30,c_broken_dependency,llm+injected,graph_build,2,0.004,"2/2 expected calls found; 0 extra; 6 nodes; median of 5; ast+networkx only, drawing excluded"
+2026-11-01T19:09:31,c_broken_dependency,llm+injected,trace,9,0.215,raw 2636; files crossed 2; defect line reached yes; median of 5; includes process start
+2026-11-01T19:09:31,c_broken_dependency,llm+injected,overlay,2,,"0 calls highlighted, 0 cross-file"
+2026-11-01T19:09:33,c_broken_dependency,llm+injected,tests_before_fix,0,1.682,"0 passed, 1 failed"
+2026-11-01T19:09:34,c_broken_dependency,llm+injected,tests_after_fix,2,1.214,"2 passed, 0 failed"
+2026-11-01T19:09:39,,,timeout_check,,5.008,Stopped after 5.0 s (time limit 5 s)
+2026-11-01T19:27:36,a_intent_conflict,llm+injected,solve,solved,365.010,6.1 min via Streamlit page
+2026-11-01T19:32:28,b_command_injection,llm+injected,solve,unsolved,~1200,"Attempt stopped after about 20 min without a fix; time is a self-reported estimate, not logged by the page"
+2026-11-01T19:43:48,c_broken_dependency,llm+injected,solve,solved,407.367,6.8 min via Streamlit page
+2026-11-01T19:56:39,a_intent_conflict,llm+injected,overlay,3,,"up to step 31 of 38; 1 call highlighted, 1 cross-file"
+2026-11-01T19:56:41,b_command_injection,llm+injected,overlay,3,,"up to step 12 of 14; 1 call highlighted, 1 cross-file"
+2026-11-01T19:56:43,c_broken_dependency,llm+injected,overlay,1,,"up to step 2 of 9; 0 calls highlighted, 0 cross-file"
+2026-11-01T20:03:48,a_intent_conflict,llm+injected,solve,solved,54.096,0.9 min via Streamlit page

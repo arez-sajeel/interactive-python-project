@@ -1,2 +1,2 @@
 category,fault_type,tool,rule,message,location
-Repository Level,Broken Dependencies,pylint,E1101,Module 'helpers' has no 'make_slug' member,main.py:6
+Repository Level,Broken Dependencies,pylint,E0611,No name 'slugify' in module 'helpers',main.py:1

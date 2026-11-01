@@ -17,81 +17,6 @@
         },
         {
             "type": "convention",
-            "symbol": "missing-function-docstring",
-            "message": "Missing function or method docstring",
-            "messageId": "C0116",
-            "confidence": "HIGH",
-            "module": "calc",
-            "obj": "line_total",
-            "line": 1,
-            "column": 0,
-            "endLine": 1,
-            "endColumn": 14,
-            "path": "calc.py",
-            "absolutePath": "C:\\projects\\Honours-Project\\prototype\\scenarios\\a_intent_conflict\\calc.py"
-        },
-        {
-            "type": "convention",
-            "symbol": "missing-function-docstring",
-            "message": "Missing function or method docstring",
-            "messageId": "C0116",
-            "confidence": "HIGH",
-            "module": "calc",
-            "obj": "apply_discount",
-            "line": 5,
-            "column": 0,
-            "endLine": 5,
-            "endColumn": 18,
-            "path": "calc.py",
-            "absolutePath": "C:\\projects\\Honours-Project\\prototype\\scenarios\\a_intent_conflict\\calc.py"
-        },
-        {
-            "type": "convention",
-            "symbol": "missing-function-docstring",
-            "message": "Missing function or method docstring",
-            "messageId": "C0116",
-            "confidence": "HIGH",
-            "module": "calc",
-            "obj": "basket_total",
-            "line": 10,
-            "column": 0,
-            "endLine": 10,
-            "endColumn": 16,
-            "path": "calc.py",
-            "absolutePath": "C:\\projects\\Honours-Project\\prototype\\scenarios\\a_intent_conflict\\calc.py"
-        },
-        {
-            "type": "refactor",
-            "symbol": "magic-value-comparison",
-            "message": "Consider using a named constant or an enum instead of '40'.",
-            "messageId": "R2004",
-            "confidence": "HIGH",
-            "module": "calc",
-            "obj": "basket_total",
-            "line": 12,
-            "column": 18,
-            "endLine": 12,
-            "endColumn": 32,
-            "path": "calc.py",
-            "absolutePath": "C:\\projects\\Honours-Project\\prototype\\scenarios\\a_intent_conflict\\calc.py"
-        },
-        {
-            "type": "convention",
-            "symbol": "missing-function-docstring",
-            "message": "Missing function or method docstring",
-            "messageId": "C0116",
-            "confidence": "HIGH",
-            "module": "calc",
-            "obj": "format_price",
-            "line": 16,
-            "column": 0,
-            "endLine": 16,
-            "endColumn": 16,
-            "path": "calc.py",
-            "absolutePath": "C:\\projects\\Honours-Project\\prototype\\scenarios\\a_intent_conflict\\calc.py"
-        },
-        {
-            "type": "convention",
             "symbol": "missing-module-docstring",
             "message": "Missing module docstring",
             "messageId": "C0114",
@@ -104,21 +29,6 @@
             "endColumn": null,
             "path": "main.py",
             "absolutePath": "C:\\projects\\Honours-Project\\prototype\\scenarios\\a_intent_conflict\\main.py"
-        },
-        {
-            "type": "convention",
-            "symbol": "missing-function-docstring",
-            "message": "Missing function or method docstring",
-            "messageId": "C0116",
-            "confidence": "HIGH",
-            "module": "main",
-            "obj": "main",
-            "line": 4,
-            "column": 0,
-            "endLine": 4,
-            "endColumn": 8,
-            "path": "main.py",
-            "absolutePath": "C:\\projects\\Honours-Project\\prototype\\scenarios\\a_intent_conflict\\main.py"
         }
     ],
     "statistics": {
@@ -126,11 +36,11 @@
             "fatal": 0,
             "error": 0,
             "warning": 0,
-            "refactor": 1,
-            "convention": 7,
+            "refactor": 0,
+            "convention": 2,
             "info": 0
         },
         "modulesLinted": 4,
-        "score": 5.555555555555555
+        "score": 8.333333333333334
     }
 }

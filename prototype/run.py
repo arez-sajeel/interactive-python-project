@@ -5,7 +5,8 @@
     python run.py scan a          Bandit and pylint
     python run.py graph a         dependency graph and call accuracy
     python run.py trace a         execution trace
-    python run.py overlay a       executed path on the graph
+    python run.py overlay a       executed path on the graph, up to the defect line
+                                  (or a given step: --step 31)
     python run.py test a          tests before and after the fix
     python run.py timeout         infinite loop stopped by the time limit
 
@@ -90,7 +91,8 @@ def do_trace(s: Scenario):
     print(f"\nEvents: {result['raw_events']} before filtering, {result['kept_events']} after"
           f"{' (capped)' if result['truncated'] else ''}")
     print(f"Files crossed: {len(result['files_crossed'])} ({', '.join(result['files_crossed'])})")
-    print(f"Defect line {s.defect_file}:{s.defect_line} reached: {check(result['defect_reached'])}")
+    if s.defect_file:
+        print(f"Defect line {s.defect_file}:{s.defect_line} reached: {check(result['defect_reached'])}")
     print(f"Trace time (median of {RUNS}): {seconds:.3f} s  under {TARGET_S} s: {check(seconds < TARGET_S)}")
     print(f"Saved trace_{s.id}.jsonl and trace_{s.id}.txt")
     metrics.log(s, "trace", result["kept_events"], seconds,
@@ -99,16 +101,22 @@ def do_trace(s: Scenario):
     return result
 
 
-def do_overlay(s: Scenario, graph=None, result=None):
-    """Highlight the traced path on the graph and save it."""
+def do_overlay(s: Scenario, graph=None, result=None, step=None):
+    """Highlight the path taken up to a trace step (by default, the defect line) and save it."""
     graph = graph or deps.build_graph(s)
     result = result or trace(s)
+    events = result["events"]
+    if step is None:
+        at_defect = [i for i, e in enumerate(events, 1)
+                     if (e["file"], e["line"], e["event"]) == (s.defect_file, s.defect_line, "line")]
+        step = at_defect[0] if at_defect else len(events)
     path = RESULTS / f"overlay_{s.id}.png"
-    counts = overlay.save(graph, result["events"], path)
-    print(f"Highlighted {counts['nodes']} nodes and {counts['edges']} calls "
+    counts = overlay.save(graph, events, path, step)
+    calls = f"{counts['edges']} call{'' if counts['edges'] == 1 else 's'}"
+    print(f"Highlighted the path up to step {step} of {len(events)}: {counts['nodes']} nodes and {calls} "
           f"({counts['cross_file_edges']} cross-file). Saved {path.name}")
-    metrics.log(s, "overlay", counts["nodes"], notes=f"{counts['edges']} calls highlighted, "
-                f"{counts['cross_file_edges']} cross-file")
+    metrics.log(s, "overlay", counts["nodes"],
+                notes=f"up to step {step} of {len(events)}; {calls} highlighted, {counts['cross_file_edges']} cross-file")
 
 
 def do_test(s: Scenario):
@@ -131,26 +139,28 @@ def do_timeout():
 def main():
     sys.stdout.reconfigure(encoding="utf-8")
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("step", choices=["list", "all", "scan", "graph", "trace", "overlay", "test", "timeout"])
+    parser.add_argument("command", choices=["list", "all", "scan", "graph", "trace", "overlay", "test", "timeout"])
     parser.add_argument("scenario", nargs="?", help="scenario id (a) or folder name")
+    parser.add_argument("--step", type=int, help="trace step to highlight up to (overlay only)")
     args = parser.parse_args()
 
-    if args.step == "list":
+    if args.command == "list":
         for s in all_scenarios():
             print(f"{s.id}  {s.name:<24} {s.title:<20} origin: {s.origin}")
         return
-    if args.step == "timeout":
+    if args.command == "timeout":
         do_timeout()
         return
     if not args.scenario:
         parser.error("this step needs a scenario, e.g. python run.py graph a")
 
     s = load(args.scenario)
-    if s.origin == "hand-written":
-        print(f"{s.name} uses hand-written placeholder code, not LLM output.\n")
     steps = {"scan": do_scan, "graph": do_graph, "trace": do_trace, "overlay": do_overlay, "test": do_test}
-    if args.step != "all":
-        steps[args.step](s)
+    if args.command == "overlay":
+        do_overlay(s, step=args.step)
+        return
+    if args.command != "all":
+        steps[args.command](s)
         return
     print("== Scan ==")
     do_scan(s)

@@ -1,25 +1,10 @@
  step  event     location         function             changes
     1  call      main.py:1        <module>             
-    2  line      main.py:1        <module>             
+    2  line      main.py:1        <module>               <- defect line
     3  call      helpers.py:1     <module>             
     4  line      helpers.py:1     <module>             
-    5  line      helpers.py:5     <module>             
-    6  return    helpers.py:5     <module>             return=None
-    7  line      main.py:4        <module>             
-    8  line      main.py:10       <module>             
-    9  line      main.py:14       <module>             
-   10  line      main.py:15       <module>             
-   11  call      main.py:10       main                 
-   12  line      main.py:11       main                 
-   13  call      main.py:4        summarise            title='Hello World', body='One two three'
-   14  line      main.py:5        summarise            words=3
-   15  call      helpers.py:5     word_count           text='One two three'
-   16  line      helpers.py:6     word_count           
-   17  return    helpers.py:6     word_count           return=3
-   18  line      main.py:6        summarise              <- defect line
-   19  exception main.py:6        summarise            raised=AttributeError("module 'helpers' has no attribute 'make_slug'")
-   20  return    main.py:6        summarise            return=None
-   21  exception main.py:11       main                 raised=AttributeError("module 'helpers' has no attribute 'make_slug'")
-   22  return    main.py:11       main                 return=None
-   23  exception main.py:15       <module>             raised=AttributeError("module 'helpers' has no attribute 'make_slug'")
-   24  return    main.py:15       <module>             return=None
+    5  line      helpers.py:4     <module>             
+    6  line      helpers.py:8     <module>             
+    7  return    helpers.py:8     <module>             return=None
+    8  exception main.py:1        <module>             raised=ImportError("cannot import name 'slugify' from 'helpers' (C:\\projects\\Honou...
+    9  return    main.py:1        <module>             return=None

@@ -4,6 +4,7 @@ import json
 import subprocess
 import sys
 from collections import Counter
+from pathlib import Path
 
 from engine.scenario import RESULTS, Scenario
 
@@ -33,7 +34,7 @@ def scan(scenario: Scenario) -> dict:
                    cwd=scenario.path, capture_output=True, check=False, timeout=120)
 
     findings = [
-        ("bandit", r["test_id"], r["issue_text"], f"{r['filename']}:{r['line_number']}")
+        ("bandit", r["test_id"], r["issue_text"], f"{Path(r['filename']).as_posix()}:{r['line_number']}")
         for r in json.loads(bandit_out.read_text(encoding="utf-8"))["results"]
     ] + [
         ("pylint", m["messageId"], m["message"], f"{m['path']}:{m['line']}")

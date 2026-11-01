@@ -1,2 +1,1 @@
 category,fault_type,tool,rule,message,location
-Syntactic & Stylistic,Magic Constants,pylint,R2004,Consider using a named constant or an enum instead of '40'.,calc.py:12

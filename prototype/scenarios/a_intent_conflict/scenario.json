@@ -2,10 +2,10 @@
   "title": "Basket total",
   "entry": "main.py",
   "argv": [],
-  "defect": {"file": "calc.py", "line": 7},
+  "defect": {"file": "calc.py", "line": 12},
   "expected_calls": [
-    ["main.main", "calc.basket_total"],
-    ["main.main", "calc.format_price"]
+    ["main", "calc.basket_total"],
+    ["main", "calc.format_price"]
   ],
-  "origin": "hand-written"
+  "origin": "llm+injected"
 }

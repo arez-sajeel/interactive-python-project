@@ -114,11 +114,15 @@ def accuracy(graph: nx.DiGraph, expected: tuple[tuple[str, str], ...]) -> dict:
     }
 
 
-INK, MUTED, FAINT, ACCENT, ERROR = "#1f2328", "#59636e", "#d1d9e0", "#0b62d6", "#cf222e"
+INK, MUTED, LINK, FAINT, ACCENT, ERROR = "#1f2328", "#59636e", "#afb8c1", "#d1d9e0", "#0b62d6", "#cf222e"
 
 
-def draw(graph: nx.DiGraph, out, executed_nodes=frozenset(), executed_edges=frozenset()) -> None:
-    """Draw one column per file. If an executed path is given, highlight it."""
+def draw(graph: nx.DiGraph, out, executed_nodes=frozenset(), executed_edges=frozenset(),
+         current: tuple[str, int] | None = None) -> None:
+    """Draw one column per file. If an executed path is given, highlight it.
+
+    current is the (node, line) of the trace step being shown, drawn in red.
+    """
     modules = sorted({d["module"] for _, d in graph.nodes(data=True) if d["kind"] == "module"})
     # Order each column depth-first from the module-level code, so callees sit below their callers.
     calls = nx.DiGraph((a, b) for a, b, d in graph.edges(data=True) if d["kind"] == "call")
@@ -137,28 +141,47 @@ def draw(graph: nx.DiGraph, out, executed_nodes=frozenset(), executed_edges=froz
     fig, ax = plt.subplots(figsize=(max(5.0, 3.2 * len(modules)), max(3.0, 0.9 * rows + 1.2)), dpi=150)
     overlay = bool(executed_nodes)
 
+    def curve(a, b):
+        skips_rows = pos[a][0] == pos[b][0] and abs(pos[a][1] - pos[b][1]) > 1
+        return f"arc3,rad={0.5 if skips_rows else 0.15}"
+
+    # Grey lines from each file (or class) to the functions defined in it, unless a call already links them.
+    # They run from box centre to box centre; the boxes drawn on top hide the ends.
+    defined = nx.DiGraph()
+    for node, d in graph.nodes(data=True):
+        parent = node.rsplit(".", 1)[0]
+        if d["kind"] in ("function", "class", "method") and not graph.has_edge(parent, node):
+            defined.add_edge(parent, node)
+    for a, b in defined.edges:
+        nx.draw_networkx_edges(defined, pos, edgelist=[(a, b)], ax=ax, node_size=0, arrows=True,
+                               arrowstyle="-", edge_color=LINK, width=1.2, connectionstyle=curve(a, b))
+
     for a, b, d in graph.edges(data=True):
         hit = (a, b) in executed_edges
         if d["kind"] == "import":
-            style = dict(edge_color=FAINT, style="dashed", width=1.0, arrowstyle="-")
+            style = dict(edge_color=MUTED, style="dashed", width=1.0, arrowstyle="-")
         else:
             colour = ACCENT if hit else (FAINT if overlay else (INK if d["cross_file"] else MUTED))
             style = dict(edge_color=colour, width=2.6 if hit else 1.2, arrowsize=14)
-        skips_rows = pos[a][0] == pos[b][0] and abs(pos[a][1] - pos[b][1]) > 1
         nx.draw_networkx_edges(graph, pos, edgelist=[(a, b)], ax=ax, node_size=2600, arrows=True,
-                               connectionstyle=f"arc3,rad={0.5 if skips_rows else 0.15}", **style)
+                               connectionstyle=curve(a, b), **style)
 
     for node, d in graph.nodes(data=True):
         hit = node in executed_nodes
         missing = d["kind"] == "missing"
-        face = "#e8f0fc" if hit else "white"
-        edge = ERROR if missing else (ACCENT if hit else (FAINT if overlay else MUTED))
+        now = current is not None and node == current[0]
+        face = "#ffebe9" if now else ("#e8f0fc" if hit else "white")
+        edge = ERROR if missing or now else (ACCENT if hit else (FAINT if overlay else MUTED))
         label = d.get("file") or node.split(".", 1)[1] + ("()" if d["kind"] != "class" else "")
-        ax.text(*pos[node], label + ("\nnot defined" if missing else ""), ha="center", va="center",
+        if missing:
+            label += "\nnot defined"
+        elif now:
+            label += f"\nline {current[1]}"
+        ax.text(*pos[node], label, ha="center", va="center",
                 fontsize=8.5, color=ERROR if missing else INK,
                 fontweight="bold" if d["kind"] == "module" else "normal",
                 bbox=dict(boxstyle="round,pad=0.45,rounding_size=0.15", fc=face, ec=edge,
-                          lw=2 if hit or missing else 1, ls="--" if missing else "-"))
+                          lw=2.4 if now else (2 if hit or missing else 1), ls="--" if missing else "-"))
 
     xs, ys = zip(*pos.values())
     ax.set_xlim(min(xs) - 1.3, max(xs) + 1.3)

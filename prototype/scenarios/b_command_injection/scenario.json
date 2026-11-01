@@ -2,9 +2,9 @@
   "title": "Report generator",
   "entry": "main.py",
   "argv": ["report && echo INJECTED"],
-  "defect": {"file": "reports.py", "line": 10},
+  "defect": {"file": "reports.py", "line": 5},
   "expected_calls": [
-    ["main.main", "reports.generate_report"]
+    ["main", "reports.generate_report"]
   ],
-  "origin": "hand-written"
+  "origin": "llm+injected"
 }

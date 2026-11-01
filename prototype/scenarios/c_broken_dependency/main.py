@@ -1,15 +1,11 @@
-import helpers
+from helpers import slugify, count_words
 
 
 def summarise(title, body):
-    words = helpers.word_count(body)
-    slug = helpers.make_slug(title)
-    return f"{slug}: {words} words"
-
-
-def main():
-    print(summarise("Hello World", "One two three"))
+    return f"{slugify(title)}: {count_words(body)} words"
 
 
 if __name__ == "__main__":
-    main()
+    title = "Getting Started with Python"
+    body = "Python is a simple and versatile programming language."
+    print(summarise(title, body))

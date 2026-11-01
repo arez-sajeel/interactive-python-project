@@ -2,10 +2,10 @@
   "title": "Text summary",
   "entry": "main.py",
   "argv": [],
-  "defect": {"file": "main.py", "line": 6},
+  "defect": {"file": "main.py", "line": 1},
   "expected_calls": [
-    ["main.summarise", "helpers.word_count"],
-    ["main.summarise", "helpers.make_slug"]
+    ["main.summarise", "helpers.slugify"],
+    ["main.summarise", "helpers.count_words"]
   ],
-  "origin": "hand-written"
+  "origin": "llm+injected"
 }

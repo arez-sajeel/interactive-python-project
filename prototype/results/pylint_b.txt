@@ -1,11 +1,10 @@
 ************* Module main
 main.py:1:0: C0114: Missing module docstring (missing-module-docstring)
-main.py:6:0: C0116: Missing function or method docstring (missing-function-docstring)
+main.py:5:7: R2004: Consider using a named constant or an enum instead of '2'. (magic-value-comparison)
 ************* Module reports
 reports.py:1:0: C0114: Missing module docstring (missing-module-docstring)
 reports.py:4:0: C0116: Missing function or method docstring (missing-function-docstring)
-reports.py:8:0: C0116: Missing function or method docstring (missing-function-docstring)
 
 ------------------------------------------------------------------
-Your code has been rated at 6.15/10 (previous run: 6.15/10, +0.00)
+Your code has been rated at 6.00/10 (previous run: 6.00/10, +0.00)
 

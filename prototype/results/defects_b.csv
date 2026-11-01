@@ -1,2 +1,3 @@
 category,fault_type,tool,rule,message,location
-Security Flaws,Command Injection (CWE-78),bandit,B602,"subprocess call with shell=True identified, security issue.",.\reports.py:10
+Security Flaws,Command Injection (CWE-78),bandit,B602,"subprocess call with shell=True identified, security issue.",reports.py:5
+Syntactic & Stylistic,Magic Constants,pylint,R2004,Consider using a named constant or an enum instead of '2'.,main.py:5
